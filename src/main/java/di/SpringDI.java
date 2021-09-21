@@ -8,9 +8,13 @@ public class SpringDI {
         context.scan("di");
         context.refresh();
         StartUI ui = context.getBean(StartUI.class);
-        ui.add("Petr Arsentev");
-        ui.add("Ivan ivanov");
+        ui.add("Evgen Koles");
         ui.print();
+        Store another = context.getBean(Store.class);
+        another.add("Ivan ivanov");
+        another.add("Alex Alexov");
+        another.getAll().forEach(System.out::println);
         ui.printConsole("Sergey Gavrilov");
+
     }
 }
