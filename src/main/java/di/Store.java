@@ -1,8 +1,11 @@
 package di;
 
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class Store {
     List<String> data = new ArrayList<>();
 
