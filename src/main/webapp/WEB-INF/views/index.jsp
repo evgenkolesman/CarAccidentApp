@@ -15,31 +15,47 @@
         crossorigin="anonymous"></script>
 
 <head>
-<%--    Download Table c --%>
+    <%--    Download Table c --%>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <title>Accident</title>
+    <title>CarAccidentApp</title>
 </head>
 <body>
 
-<div class = "container">
-    Hello : ${user}
-    <table class="table">
-        <thead>
-        <tr>
-            <th>User</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${users}" var="user1">
-        <tr>
-            <td><c:out value="${user1}"/></td>
-        </tr>
-        </c:forEach>
-        </tbody>
-    </table>
+<div class="container">
+    <style>
+        body
+        {
+            text-align: center;
+        }
+    </style>
+    <h2 >Accident table</h2>
+    <div>
+        <div class="row">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>DESCRIPTION</th>
+                    <th>ADDRESS</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${accidents}" var="accident">
+                    <tr>
+                        <td><c:out value="${accident.getId()}"/></td>
+                        <td><c:out value="${accident.getName()}"/></td>
+                        <td><c:out value="${accident.getText()}"/></td>
+                        <td><c:out value="${accident.getAddress()}"/></td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 </body>
 </html>
