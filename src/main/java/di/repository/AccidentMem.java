@@ -32,6 +32,10 @@ public class AccidentMem {
         map.remove(accident);
     }
 
+    public void edit(Accident accident) {
+        map.replace(accident.getId(), accident);
+    }
+
     public static void main(String[] args) {
         new AccidentMem().add(1, new Accident(1, "NAME", "DESC", "STREET"));
 //        List<Accident> list = new AccidentMem().getAll().stream().toList();

@@ -1,4 +1,4 @@
-package di;
+package di.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
