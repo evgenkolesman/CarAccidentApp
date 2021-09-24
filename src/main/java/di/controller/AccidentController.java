@@ -28,4 +28,10 @@ public class AccidentController {
         return "redirect:/";
     }
 
+    @PostMapping("/edit")
+    public String edit(@ModelAttribute Accident accident) {
+        service.saveOrEdit(accident);
+        return "redirect:/";
+    }
+
 }

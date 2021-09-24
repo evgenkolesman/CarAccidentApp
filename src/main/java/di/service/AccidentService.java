@@ -40,4 +40,8 @@ public class AccidentService {
         return store.getAll();
     }
 
+    public Accident get (Integer id) {
+        return store.get(id);
+    }
+
 }

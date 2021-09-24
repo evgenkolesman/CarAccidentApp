@@ -1,3 +1,4 @@
+<%@ page import="di.model.Accident" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -13,7 +14,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <head>
     <%--    Download Table c --%>
     <meta charset="utf-8">
@@ -26,12 +27,11 @@
 
 <div class="container">
     <style>
-        body
-        {
+        body {
             text-align: center;
         }
     </style>
-    <h2 >Accident table</h2>
+    <h2>Accident table</h2>
     <div>
         <div class="row">
             <table class="table">
@@ -45,18 +45,21 @@
                 </thead>
                 <tbody>
                 <c:forEach items="${accidents}" var="accident">
-                    <a href='<c:url value="${accident.id}"/>'>
-                        <i class="fa fa-edit mr-3"></i>
-                    </a>
-                        <td><c:out value="${accident.getId()}"/></td>
-                        <td><c:out value="${accident.getName()}"/></td>
-                        <td><c:out value="${accident.getText()}"/></td>
-                        <td><c:out value="${accident.getAddress()}"/></td>
+                    <td>
+                        <a href="<%=request.getContextPath()%>/create?id="${accident.getId()}"">
+                            <i class="fa fa-edit mr-3"></i>
+                        </a>
+                        <c:out  value ="${accident.getId()}"/>
+                    </td>
+                    <td><c:out value="${accident.getName()}"/></td>
+                    <td><c:out value="${accident.getText()}"/></td>
+                    <td><c:out value="${accident.getAddress()}"/></td>
                     </tr>
                 </c:forEach>
                 </tbody>
-                <a href="<c:url value='/create'/>">Добавить инцидент</a>
+
             </table>
+            <a href="<c:url value='/create'/>">Add accident</a>
         </div>
     </div>
 </div>
