@@ -12,8 +12,8 @@ public class AccidentMem {
 
     {
         map.put(1, new Accident(1, "NAME", "DESC", "STREET ул. им. Жукова"));
-        map.put(2, new Accident(2, "NAME1", "DESC1", "STREET ул. Майская"));
-        map.put(3, new Accident(3, "NAME2", "DESC2", "STREET ул. Вечерняя"));
+//        map.put(2, new Accident(2, "NAME1", "DESC1", "STREET ул. Майская"));
+//        map.put(3, new Accident(3, "NAME2", "DESC2", "STREET ул. Вечерняя"));
     }
 
     public void add(Integer id, Accident accident) {
