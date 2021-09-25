@@ -1,4 +1,4 @@
-package di;
+package di.configuration;
 
 import di.configuration.WebConfig;
 import org.springframework.web.WebApplicationInitializer;

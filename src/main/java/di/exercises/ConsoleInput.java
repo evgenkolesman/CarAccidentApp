@@ -1,4 +1,4 @@
-package di;
+package di.exercises;
 
 import org.springframework.stereotype.Component;
 

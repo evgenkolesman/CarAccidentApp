@@ -10,7 +10,7 @@ import java.util.Collection;
 @Service
 public class AccidentService {
 
-    private final AccidentMem store;
+    private AccidentMem store;
 
     @Autowired
     public AccidentService(AccidentMem store) {
@@ -44,4 +44,7 @@ public class AccidentService {
         return store.get(id);
     }
 
+    public void delete(Accident accident) {
+        store.delete(accident);
+    }
 }
