@@ -8,17 +8,17 @@
             <td>Name:</td>
             <td><input type='text' name='name' value="${accident.name}"></td>
         </tr>
-<%--        <tr>--%>
-<%--            <td>Accident description:</td>--%>
-<%--            <td><input type='text' name='name' value="${accident.text}"></td>--%>
-<%--        </tr>--%>
-<%--        <tr>--%>
-<%--            <td>Address:</td>--%>
-<%--            <td><input type='text' name='name' value="${accident.address}"></td>--%>
-<%--        </tr>--%>
-<%--        <tr>--%>
-<%--            <td colspan='2'><input name="submit" type="submit" value="Сохранить" /></td>--%>
-<%--        </tr>--%>
+        <tr>
+            <td>Accident description:</td>
+            <td><input type='text' name='text' value="${accident.text}"></td>
+        </tr>
+        <tr>
+            <td>Address:</td>
+            <td><input type='text' name='address' value="${accident.address}"></td>
+        </tr>
+        <tr>
+            <td colspan='2'><input name="submit" type="submit" value="Сохранить" /></td>
+        </tr>
     </table>
 </form>
 </body>
