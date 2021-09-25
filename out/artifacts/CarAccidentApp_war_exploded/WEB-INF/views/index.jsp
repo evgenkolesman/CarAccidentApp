@@ -46,14 +46,23 @@
                 <tbody>
                 <c:forEach items="${accidents}" var="accident">
                     <td>
-                        <a href="<%=request.getContextPath()%>/create?id="${accident.getId()}"">
-                            <i class="fa fa-edit mr-3"></i>
+
+                        <a href="<c:url value='/update?id=${accident.id}'/>">
+                        <i class="fa fa-edit mr-3"></i>
                         </a>
-                        <c:out  value ="${accident.getId()}"/>
+                        <c:out value="${accident.id}"/>
                     </td>
-                    <td><c:out value="${accident.getName()}"/></td>
-                    <td><c:out value="${accident.getText()}"/></td>
-                    <td><c:out value="${accident.getAddress()}"/></td>
+                    <td>
+                        <c:out value="${accident.name}"/>
+<%--                        Ссылка изменения имени--%>
+                        <div>
+                            <span>
+                                 <a href="<c:url value='/update?id=${accident.id}'/>">Добавить инцидент</a>
+                            </span>
+                        </div>
+                    </td>
+                    <td><c:out value="${accident.text}"/></td>
+                    <td><c:out value="${accident.address}"/></td>
                     </tr>
                 </c:forEach>
                 </tbody>

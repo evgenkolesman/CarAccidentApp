@@ -3,12 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <body>
 <p>ХОТИТЕ ДОБАВИТЬ ПОСТАВЬТЕ ID = 0, ХОТИТЕ ИЗМЕНИТЬ ВПИШИТЕ ID</p>
-<form action="${pageContext.request.contextPath}/save" method="post"/>
+<form action="<c:url value='/save'/>" method='POST'>
 <%--<form action="<c:url value='/save'/>" method='POST'>--%>
   <table>
     <tr>
-      <td>ID:</td>
-      <td><input type='text' name='id'/>${accident.getId()}</td>
+<%--      <td>ID:</td>--%>
+<%--      <td><input type='text' name='id'></td>--%>
       <td>Название:</td>
       <td><input type='text' name='name'></td>
       <td>Описание:</td>
