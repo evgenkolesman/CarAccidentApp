@@ -41,6 +41,8 @@
                     <th>NAME</th>
                     <th>DESCRIPTION</th>
                     <th>ADDRESS</th>
+                    <th>TYPE</th>
+                    <th>RULE</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -64,6 +66,7 @@
                     <td><c:out value="${accident.text}"/></td>
                     <td><c:out value="${accident.address}"/></td>
                     <td><c:out value="${accident.type}"/></td>
+                    <td><c:out value="${accident.rule}"/></td>
                     </tr>
                 </c:forEach>
                 </tbody>

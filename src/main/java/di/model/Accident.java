@@ -1,6 +1,7 @@
 package di.model;
 
 import java.util.Objects;
+import java.util.Set;
 
 public class Accident {
 
@@ -9,16 +10,18 @@ public class Accident {
     private String text;
     private String address;
     private AccidentType type;
+    private Rule rule;
 
     public Accident() {
     }
 
-    public Accident(int id, String name, String text, String address, AccidentType type) {
+    public Accident(int id, String name, String text, String address, AccidentType type, Rule rule) {
         this.id = id;
         this.name = name;
         this.text = text;
         this.address = address;
         this.type = type;
+        this.rule = rule;
     }
 
     public int getId() {
@@ -59,6 +62,14 @@ public class Accident {
 
     public void setType(AccidentType type) {
         this.type = type;
+    }
+
+    public Rule getRule() {
+        return rule;
+    }
+
+    public void setRule(Rule rule) {
+        this.rule = rule;
     }
 
     @Override
