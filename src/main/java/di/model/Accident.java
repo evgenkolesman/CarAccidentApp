@@ -1,5 +1,6 @@
 package di.model;
 
+import java.text.MessageFormat;
 import java.util.Objects;
 import java.util.Set;
 
@@ -74,8 +75,12 @@ public class Accident {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Accident accident = (Accident) o;
         return id == accident.id;
     }
@@ -87,13 +92,8 @@ public class Accident {
 
     @Override
     public String toString() {
-        return "Accident{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", text='" + text + '\'' +
-                ", address='" + address + '\'' +
-                ", type=" + type +
-                ", rule=" + rule +
-                '}';
+        return MessageFormat.format(
+                "Accident'{'id={0}, name=''{1}'', text=''{2}'', address=''{3}'', type={4}, rule={5}'}'",
+                id, name, text, address, type, rule);
     }
 }

@@ -28,6 +28,7 @@ public class AccidentService {
         }
         //accident.getId() == 0 ? add(accident) : edit(accident); так почему то не работает
     }
+
     public void add(Accident accident) {
         if (accident.getId() == 0) {
             accident.setId(store.getAll().size() + 1);
@@ -43,7 +44,7 @@ public class AccidentService {
         return store.getAll();
     }
 
-    public Accident get (Integer id) {
+    public Accident get(Integer id) {
         return store.get(id);
     }
 
