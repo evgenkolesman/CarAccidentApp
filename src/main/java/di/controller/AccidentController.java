@@ -20,17 +20,6 @@ import java.util.List;
 public class AccidentController {
 
     private final AccidentService service;
-    private List<AccidentType> types = new ArrayList<>();
-    private List<Rule> rules = new ArrayList<>();
-
-    {
-        rules.add(Rule.of(1, "Статья. 1"));
-        rules.add(Rule.of(2, "Статья. 2"));
-        rules.add(Rule.of(3, "Статья. 3"));
-        types.add(AccidentType.of(1, "Две машины"));
-        types.add(AccidentType.of(2, "Машина и человек"));
-        types.add(AccidentType.of(3, "Машина и велосипед"));
-    }
 
     public AccidentController(AccidentService service) {
         this.service = service;
@@ -38,22 +27,25 @@ public class AccidentController {
 
     @GetMapping("/create")
     public String create(Model model) {
-        model.addAttribute("types", types);
-        model.addAttribute("rules", rules);
+        model.addAttribute("types", AccidentService.getTypes());
+        model.addAttribute("rules", AccidentService.getRules());
         return "/create";
     }
 
     @PostMapping("/save")
     public String save(@ModelAttribute Accident accident, HttpServletRequest req) {
         String[] ids = req.getParameterValues("rIds");
+        String[] type = req.getParameterValues("type.id");
+        accident.setRule(AccidentService.getRules().stream().filter(x -> x.getId() == Integer.parseInt(ids[0])).findFirst().get());
+        accident.setType(AccidentService.getTypes().stream().filter(x -> x.getId() == Integer.parseInt(type[0])).findFirst().get());
         service.saveOrEdit(accident);
         return "redirect:/";
     }
 
     @GetMapping("/update")
     public String update(@RequestParam("id") int id, Model model) {
-        model.addAttribute("types", types);
-        model.addAttribute("rules", rules);
+        model.addAttribute("types", AccidentService.getTypes());
+        model.addAttribute("rules", AccidentService.getRules());
         model.addAttribute("accident", service.get(id));
         return "/update";
     }

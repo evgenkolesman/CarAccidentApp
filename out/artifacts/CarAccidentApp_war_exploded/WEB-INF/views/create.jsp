@@ -9,13 +9,32 @@
     <tr>
 <%--      <td>ID:</td>--%>
 <%--      <td><input type='text' name='id'></td>--%>
-      <td>Название:</td>
+      <td>Name:</td>
       <td><input type='text' name='name'></td>
-      <td>Описание:</td>
+      <td>Description:</td>
       <td><input type='text' name='text'></td>
-      <td>Адрес:</td>
+      <td>Address:</td>
       <td><input type='text' name='address'></td>
     </tr>
+      <tr>
+          <td>Type</td>
+          <td type="text" name="type" >
+              <select name="type.id">
+                  <c:forEach var="type" items="${types}" >
+                      <option value="${type.id}">${type.name}</option>
+                  </c:forEach>
+              </select>
+          </td>
+      </tr>
+      <tr>
+          <td>States:</td>
+          <td>
+              <select name="rIds" multiple>
+                  <c:forEach var="rule" items="${rules}" >
+                      <option value="${rule.id}">${rule.name}</option>
+                  </c:forEach>
+              </select>
+      </tr>
     <tr>
       <td colspan='2'><input name="submit" type="submit" value="Сохранить" /></td>
     </tr>

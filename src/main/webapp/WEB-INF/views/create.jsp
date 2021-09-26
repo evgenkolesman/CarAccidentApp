@@ -19,7 +19,6 @@
       <tr>
           <td>Type</td>
           <td type="text" name="type" >
-
               <select name="type.id">
                   <c:forEach var="type" items="${types}" >
                       <option value="${type.id}">${type.name}</option>

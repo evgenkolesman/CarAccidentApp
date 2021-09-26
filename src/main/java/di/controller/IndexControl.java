@@ -14,9 +14,7 @@ public class IndexControl {
 
     @GetMapping("/")
     public String index(Model model) {
-        AccidentService service = new AccidentService(new AccidentMem());
-        List<Accident> list = service.getAll().stream().toList();
-        model.addAttribute("accidents", list);
+        model.addAttribute("accidents", new AccidentService(new AccidentMem()).getAll());
         return "index";
     }
 }

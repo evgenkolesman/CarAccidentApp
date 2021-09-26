@@ -92,6 +92,8 @@ public class Accident {
                 ", name='" + name + '\'' +
                 ", text='" + text + '\'' +
                 ", address='" + address + '\'' +
+                ", type=" + type +
+                ", rule=" + rule +
                 '}';
     }
 }

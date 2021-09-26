@@ -41,12 +41,14 @@
                     <th>NAME</th>
                     <th>DESCRIPTION</th>
                     <th>ADDRESS</th>
+                    <th>TYPE</th>
+                    <th>RULE</th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach items="${accidents}" var="accident">
+                    <tr>
                     <td>
-
                         <a href="<c:url value='/update?id=${accident.id}'/>">
                         <i class="fa fa-edit mr-3"></i>
                         </a>
@@ -60,9 +62,11 @@
 <%--                                 <a href="<c:url value='/update?id=${accident.id}'/>">Добавить инцидент</a>--%>
 <%--                            </span>--%>
 <%--                        </div>--%>
-<%--                    </td>--%>
+                    </td>
                     <td><c:out value="${accident.text}"/></td>
                     <td><c:out value="${accident.address}"/></td>
+                    <td><c:out value="${accident.type.name}"/></td>
+                    <td><c:out value="${accident.rule.name}"/></td>
                     </tr>
                 </c:forEach>
                 </tbody>
