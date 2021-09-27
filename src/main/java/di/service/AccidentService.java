@@ -7,13 +7,12 @@ import di.repository.AccidentMem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.List;
 
 @Service
 public class AccidentService {
 
-    private AccidentMem store;
+    private final AccidentMem store;
 
     @Autowired
     public AccidentService(AccidentMem store) {
@@ -58,5 +57,13 @@ public class AccidentService {
 
     public List<AccidentType> getTypes() {
         return store.getTypes();
+    }
+
+    public AccidentType getType(String[] type) {
+        return store.getTypes().stream().filter(x -> x.getId() == Integer.parseInt(type[0])).findFirst().get();
+    }
+
+    public Rule getRule(String[] rules) {
+        return store.getRules().stream().filter(x -> x.getId() == Integer.parseInt(rules[0])).findFirst().get();
     }
 }

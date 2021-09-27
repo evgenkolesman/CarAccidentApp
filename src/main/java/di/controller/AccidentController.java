@@ -36,8 +36,8 @@ public class AccidentController {
     public String save(@ModelAttribute Accident accident, HttpServletRequest req) {
         String[] ids = req.getParameterValues("rIds");
         String[] type = req.getParameterValues("type.id");
-        accident.setRule(service.getRules().stream().filter(x -> x.getId() == Integer.parseInt(ids[0])).findFirst().get());
-        accident.setType(service.getTypes().stream().filter(x -> x.getId() == Integer.parseInt(type[0])).findFirst().get());
+        accident.setRule(service.getRule(ids));
+        accident.setType(service.getType(type));
         service.saveOrEdit(accident);
         return "redirect:/";
     }
