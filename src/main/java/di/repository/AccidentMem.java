@@ -9,7 +9,7 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
-@Repository
+//@Repository
 public class AccidentMem {
     static Map<Integer, Accident> map = new ConcurrentHashMap<>();
     static Set<AccidentType> types = new HashSet<>();
