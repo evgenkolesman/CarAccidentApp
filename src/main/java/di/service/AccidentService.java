@@ -52,11 +52,11 @@ public class AccidentService {
         store.delete(accident);
     }
 
-    public static List<Rule> getRules() {
-        return AccidentMem.getRules();
+    public List<Rule> getRules() {
+        return store.getRules();
     }
 
-    public static List<AccidentType> getTypes() {
-        return AccidentMem.getTypes();
+    public List<AccidentType> getTypes() {
+        return store.getTypes();
     }
 }

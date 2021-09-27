@@ -27,8 +27,8 @@ public class AccidentController {
 
     @GetMapping("/create")
     public String create(Model model) {
-        model.addAttribute("types", AccidentService.getTypes());
-        model.addAttribute("rules", AccidentService.getRules());
+        model.addAttribute("types", service.getTypes());
+        model.addAttribute("rules", service.getRules());
         return "/create";
     }
 
@@ -36,16 +36,16 @@ public class AccidentController {
     public String save(@ModelAttribute Accident accident, HttpServletRequest req) {
         String[] ids = req.getParameterValues("rIds");
         String[] type = req.getParameterValues("type.id");
-        accident.setRule(AccidentService.getRules().stream().filter(x -> x.getId() == Integer.parseInt(ids[0])).findFirst().get());
-        accident.setType(AccidentService.getTypes().stream().filter(x -> x.getId() == Integer.parseInt(type[0])).findFirst().get());
+        accident.setRule(service.getRules().stream().filter(x -> x.getId() == Integer.parseInt(ids[0])).findFirst().get());
+        accident.setType(service.getTypes().stream().filter(x -> x.getId() == Integer.parseInt(type[0])).findFirst().get());
         service.saveOrEdit(accident);
         return "redirect:/";
     }
 
     @GetMapping("/update")
     public String update(@RequestParam("id") int id, Model model) {
-        model.addAttribute("types", AccidentService.getTypes());
-        model.addAttribute("rules", AccidentService.getRules());
+        model.addAttribute("types", service.getTypes());
+        model.addAttribute("rules", service.getRules());
         model.addAttribute("accident", service.get(id));
         return "/update";
     }

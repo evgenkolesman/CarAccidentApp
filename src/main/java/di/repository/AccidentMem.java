@@ -9,11 +9,11 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
-//@Repository
+@Repository
 public class AccidentMem {
-    static Map<Integer, Accident> map = new ConcurrentHashMap<>();
-    static Set<AccidentType> types = new HashSet<>();
-    static Set<Rule> rules = new HashSet<>();
+    private final static Map<Integer, Accident> map = new ConcurrentHashMap<>();
+    private Set<AccidentType> types = new HashSet<>();
+    private Set<Rule> rules = new HashSet<>();
 
     {
         rules.add(Rule.of(1, "Статья. 1"));
@@ -51,27 +51,27 @@ public class AccidentMem {
         map.replace(accident.getId(), accident);
     }
 
-    public static void main(String[] args) {
-        new AccidentMem().add(1, new Accident(1, "NAME", "DESC", "STREET",
-                types.stream().filter(data -> data.getId() == 1).findFirst().get(), rules.stream().filter(data -> data.getId() == 1).findFirst().get()));
-        System.out.println(new AccidentMem().getAll().stream().toList().get(0));
-        System.out.println(map.size());
-        System.out.println();
-    }
-
-    public static List<AccidentType> getTypes() {
+    public List<AccidentType> getTypes() {
         return types.stream().toList();
     }
 
-    public static void setTypes(List<AccidentType> types) {
-        AccidentMem.types = new HashSet<>(types);
+    public void setTypes(List<AccidentType> types) {
+        this.types = new HashSet<>(types);
     }
 
-    public static List<Rule> getRules() {
+    public List<Rule> getRules() {
         return rules.stream().toList();
     }
 
-    public static void setRules(List<Rule> rules) {
-        AccidentMem.rules = new HashSet<>(rules);
+    public void setRules(List<Rule> rules) {
+        this.rules = new HashSet<>(rules);
     }
+
+//    public static void main(String[] args) {
+//        new AccidentMem().add(1, new Accident(1, "NAME", "DESC", "STREET",
+//                types.stream().filter(data -> data.getId() == 1).findFirst().get(), rules.stream().filter(data -> data.getId() == 1).findFirst().get()));
+//        System.out.println(new AccidentMem().getAll().stream().toList().get(0));
+//        System.out.println(map.size());
+//        System.out.println();
+//    }
 }
