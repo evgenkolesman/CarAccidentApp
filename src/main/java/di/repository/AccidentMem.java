@@ -7,11 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
 
-@Repository
+//@Repository
 public class AccidentMem {
-    private final static Map<Integer, Accident> map = new ConcurrentHashMap<>();
+    private final static Map<Integer, Accident> MAP = new ConcurrentHashMap<>();
     private Set<AccidentType> types = new HashSet<>();
     private Set<Rule> rules = new HashSet<>();
 
@@ -28,27 +27,27 @@ public class AccidentMem {
     }
 
     public void add(Integer id, Accident accident) {
-        map.put(id, accident);
+        MAP.put(id, accident);
     }
 
     public Accident get(Integer id) {
-        return map.get(id);
+        return MAP.get(id);
     }
 
     public List<Accident> getAll() {
-        return map.values().stream().toList();
+        return MAP.values().stream().toList();
     }
 
     public void delete(Integer id) {
-        map.remove(id, map.get(id));
+        MAP.remove(id, MAP.get(id));
     }
 
     public void delete(Accident accident) {
-        map.remove(accident.getId(), accident);
+        MAP.remove(accident.getId(), accident);
     }
 
     public void edit(Accident accident) {
-        map.replace(accident.getId(), accident);
+        MAP.replace(accident.getId(), accident);
     }
 
     public List<AccidentType> getTypes() {
