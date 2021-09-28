@@ -1,20 +1,34 @@
 package di.controller;
 
-import di.model.Accident;
-import di.repository.AccidentMem;
-import di.service.AccidentService;
+import di.repository.AccidentJdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.*;
 
+
+/**
+ *  Вот так бы было через AccidentMem
+ *  @GetMapping("/")
+ *   public String index(Model model) {
+ *        model.addAttribute("accidents", new AccidentService(new AccidentMem()).getAll());
+ *       return "index";
+ *   }
+ */
 @Controller
 public class IndexControl {
 
-    @GetMapping("/")
+    private final AccidentJdbcTemplate accidents;
+
+    public IndexControl(AccidentJdbcTemplate accidents) {
+        this.accidents = accidents;
+    }
+
+
+
+    @GetMapping
     public String index(Model model) {
-        model.addAttribute("accidents", new AccidentService(new AccidentMem()).getAll());
+        model.addAttribute("accidents", accidents.getAllAccident());
         return "index";
     }
 }
