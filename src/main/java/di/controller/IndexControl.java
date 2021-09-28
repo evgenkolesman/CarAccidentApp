@@ -1,12 +1,16 @@
 package di.controller;
 
+import di.model.Accident;
 import di.repository.AccidentHibernate;
 import di.repository.AccidentJdbcTemplate;
+import di.repository.AccidentRepository;
 import di.service.AccidentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -31,6 +35,24 @@ import org.springframework.web.bind.annotation.GetMapping;
  *         model.addAttribute("accidents", accidents.getAllAccident());
  *         return "index";
  *     }
+ *     \
+ *
+ *     Вот так для чистого Hibernate
+ *
+ *
+ *         private final AccidentService accidents;
+ *
+ *     public IndexControl(AccidentService accidents) {
+ *         this.accidents = accidents;
+ *     }
+ *
+ *
+ *
+ *     @GetMapping
+ *     public String index(Model model) {
+ *         model.addAttribute("accidents", accidents.getAll());
+ *         return "index";
+ *     }
  */
 @Controller
 public class IndexControl {
@@ -41,11 +63,11 @@ public class IndexControl {
         this.accidents = accidents;
     }
 
-
-
-    @GetMapping
+    @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("accidents", accidents.getAll());
+        List<Accident> res = new ArrayList<>();
+        accidents.getAll().forEach(res::add);
+        model.addAttribute("accidents", res);
         return "index";
     }
 }

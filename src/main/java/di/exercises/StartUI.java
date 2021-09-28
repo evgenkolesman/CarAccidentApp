@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
-@Scope("prototype")
+//@Component
+//@Scope("prototype")
 public class StartUI {
 
     @Autowired

@@ -3,59 +3,113 @@ package di.service;
 import di.model.Accident;
 import di.model.AccidentType;
 import di.model.Rule;
-import di.repository.AccidentHibernate;
+import di.repository.AccidentRepository;
+import di.repository.AccidentRuleRepository;
+import di.repository.AccidentTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * private final AccidentJdbcTemplate store; - подключить для JDBC
  * private final AccidentMem store; - подключить для работы с локального компа
+ * private final AccidentHibernate store; - подключить для работы на Hibernate
  *
  */
 
 @Service
 public class AccidentService {
 
-    private final AccidentHibernate store;
+    private final AccidentRepository accidentStore;
+    private final AccidentRuleRepository ruleStore;
+    private final AccidentTypeRepository typeStore;
 
     @Autowired
-    public AccidentService(AccidentHibernate store) {
-        this.store = store;
+    public AccidentService(AccidentRepository accidentStore,
+                           AccidentRuleRepository ruleStore, AccidentTypeRepository typeStore) {
+        this.accidentStore = accidentStore;
+        this.ruleStore = ruleStore;
+        this.typeStore = typeStore;
     }
 
-    public void saveOrEdit(Accident accident) {
-      store.saveOrUpdate(accident);
+    public Accident saveOrEdit(Accident accident) {
+         return accidentStore.save(accident);
     }
 
     public List<Accident> getAll() {
-        return store.getAllAccident();
+        ArrayList<Accident> list = new ArrayList();
+        accidentStore.findAll().forEach(list::add);
+        return list;
     }
 
     public List<Rule> getRules() {
-        return store.getAllRules();
+        ArrayList<Rule> list = new ArrayList();
+        ruleStore.findAll().forEach(list::add);
+        return list;
     }
 
     public List<AccidentType> getTypes() {
-    return store.getAllTypes();
+        ArrayList<AccidentType> list = new ArrayList();
+        typeStore.findAll().forEach(list::add);
+        return list;
     }
 
     public AccidentType getType(String[] type) {
-        return store.getAllTypes().stream().filter(x -> x.getId() == Integer.parseInt(type[0])).findFirst().get();
+        return getTypes().stream().filter(x -> x.getId() == Integer.parseInt(type[0])).findFirst().get();
     }
 
     public Rule getRule(String[] rules) {
-        return store.getAllRules().stream().filter(x -> x.getId() == Integer.parseInt(rules[0])).findFirst().get();
+        return getRules().stream().filter(x -> x.getId() == Integer.parseInt(rules[0])).findFirst().get();
     }
 
     public Accident get(Integer id) {
-        return store.get(id);
+        return accidentStore.findById(id).get();
     }
 }
 
 /**
- * Это сервис для применения на основе AccidentJdbcTemplate
+ * Это сервис для Hibernate
+ *
+
+
+ @Autowired
+ public AccidentService(AccidentHibernate store) {
+ this.store = store;
+ }
+
+ public void saveOrEdit(Accident accident) {
+ store.saveOrUpdate(accident);
+ }
+
+ public List<Accident> getAll() {
+ return store.getAllAccident();
+ }
+
+ public List<Rule> getRules() {
+ return store.getAllRules();
+ }
+
+ public List<AccidentType> getTypes() {
+ return store.getAllTypes();
+ }
+
+ public AccidentType getType(String[] type) {
+ return store.getAllTypes().stream().filter(x -> x.getId() == Integer.parseInt(type[0])).findFirst().get();
+ }
+
+ public Rule getRule(String[] rules) {
+ return store.getAllRules().stream().filter(x -> x.getId() == Integer.parseInt(rules[0])).findFirst().get();
+ }
+
+ public Accident get(Integer id) {
+ return store.get(id);
+ }
+ *
+  *
+  * Это сервис для применения на основе AccidentJdbcTemplate
  *
  public void add(Accident accident) {
  store.save(accident);

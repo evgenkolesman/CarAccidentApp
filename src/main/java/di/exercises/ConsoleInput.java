@@ -2,7 +2,7 @@ package di.exercises;
 
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class ConsoleInput {
 
     public void print(String value) {

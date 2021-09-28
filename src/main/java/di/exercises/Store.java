@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
-@Scope("prototype")
+//@Component
+//@Scope("prototype")
 public class Store {
     List<String> data = new ArrayList<>();
 
