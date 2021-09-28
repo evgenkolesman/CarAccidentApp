@@ -1,16 +1,35 @@
 package di.model;
 
+import javax.persistence.*;
 import java.text.MessageFormat;
 import java.util.Objects;
 import java.util.Set;
 
+
+/**
+ * если работаем просто через БД скриптами создаем все таблицы и зависимости, а потом
+ * вкладываем
+ *     private AccidentType type;
+ *     private Rule rule;
+ *     в конструктор
+ */
+
+@Entity
+@Table(name="accident")
 public class Accident {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String text;
+    @Column(name="adress")
     private String address;
+    @ManyToOne
+    @JoinColumn(name="atype_id")
     private AccidentType type;
+    @ManyToOne
+    @JoinColumn(name="rule_id")
     private Rule rule;
 
     public Accident() {

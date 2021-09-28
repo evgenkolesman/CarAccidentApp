@@ -3,19 +3,26 @@ package di.service;
 import di.model.Accident;
 import di.model.AccidentType;
 import di.model.Rule;
+import di.repository.AccidentHibernate;
 import di.repository.AccidentJdbcTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * private final AccidentJdbcTemplate store; - подключить для JDBC
+ * private final AccidentMem store; - подключить для работы с локального компа
+ *
+ */
+
 @Service
 public class AccidentService {
 
-    private final AccidentJdbcTemplate store;
+    private final AccidentHibernate store;
 
     @Autowired
-    public AccidentService(AccidentJdbcTemplate store) {
+    public AccidentService(AccidentHibernate store) {
         this.store = store;
     }
 
@@ -60,7 +67,42 @@ public class AccidentService {
     }
 }
 
-/**Это сервис для применения на основе AccidentMem
+/**
+ * Это сервис для применения на основе AccidentJdbcTemplate
+ *
+ public void add(Accident accident) {
+ store.save(accident);
+ }
+
+ public void edit(Accident accident) {
+ store.update(accident);
+ }
+
+ public List<Accident> getAll() {
+ return store.getAllAccident();
+ }
+
+ public List<Rule> getRules() {
+ return store.getAllRules();
+ }
+
+ public List<AccidentType> getTypes() {
+ return store.getAllTypes();
+ }
+
+ public AccidentType getType(String[] type) {
+ return store.getAllTypes().stream().filter(x -> x.getId() == Integer.parseInt(type[0])).findFirst().get();
+ }
+
+ public Rule getRule(String[] rules) {
+ return store.getAllRules().stream().filter(x -> x.getId() == Integer.parseInt(rules[0])).findFirst().get();
+ }
+
+ public Accident get(Integer id) {
+ return store.get(id);
+ }
+ *
+ * Это сервис для применения на основе AccidentMem
  *  private final AccidentMem store;
 
     @Autowired
