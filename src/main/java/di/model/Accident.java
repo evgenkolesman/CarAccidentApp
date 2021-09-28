@@ -9,13 +9,13 @@ import java.util.Set;
 /**
  * если работаем просто через БД скриптами создаем все таблицы и зависимости, а потом
  * вкладываем
- *     private AccidentType type;
- *     private Rule rule;
- *     в конструктор
+ * private AccidentType type;
+ * private Rule rule;
+ * в конструктор
  */
 
 @Entity
-@Table(name="accident")
+@Table(name = "accident")
 public class Accident {
 
     @Id
@@ -23,13 +23,13 @@ public class Accident {
     private int id;
     private String name;
     private String text;
-    @Column(name="adress")
+    @Column(name = "adress")
     private String address;
     @ManyToOne
-    @JoinColumn(name="atype_id")
+    @JoinColumn(name = "atype_id")
     private AccidentType type;
     @ManyToOne
-    @JoinColumn(name="rule_id")
+    @JoinColumn(name = "rule_id")
     private Rule rule;
 
     public Accident() {

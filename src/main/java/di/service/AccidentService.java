@@ -4,7 +4,6 @@ import di.model.Accident;
 import di.model.AccidentType;
 import di.model.Rule;
 import di.repository.AccidentHibernate;
-import di.repository.AccidentJdbcTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,19 +26,7 @@ public class AccidentService {
     }
 
     public void saveOrEdit(Accident accident) {
-        if (accident.getId() == 0) {
-            add(accident);
-        } else {
-            edit(accident);
-        }
-    }
-
-    public void add(Accident accident) {
-        store.save(accident);
-    }
-
-    public void edit(Accident accident) {
-        store.update(accident);
+      store.saveOrUpdate(accident);
     }
 
     public List<Accident> getAll() {

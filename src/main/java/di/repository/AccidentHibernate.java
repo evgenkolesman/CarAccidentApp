@@ -6,9 +6,12 @@ import di.model.AccidentType;
 import di.model.Rule;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
 
 @Repository
 public class AccidentHibernate {
@@ -18,48 +21,39 @@ public class AccidentHibernate {
         this.sf = sf;
     }
 
-    public void save(Accident accident) {
-        try (Session session = sf.openSession()) {
-            session.save(accident);
-        }
+    @Transactional
+    public void saveOrUpdate(Accident accident) {
+        Session session = sf.getCurrentSession();
+        session.saveOrUpdate(accident);
     }
 
-    public void update(Accident accident) {
-        try (Session session = sf.openSession()) {
-            session.update(accident);
-        }
+    @Transactional
+    public List<Accident> getAllAccident() {
+        Session session = sf.getCurrentSession();
+        return session.createQuery("FROM Accident ")
+                .list();
     }
 
-    public List <Accident> getAllAccident() {
-        try (Session session = sf.openSession()) {
-            return session
-                    .createQuery("FROM Accident ")
-                    .list();
-        }
-    }
-
+    @Transactional
     public List<Rule> getAllRules() {
-        try (Session session = sf.openSession()) {
-            return session
-                    .createQuery("FROM Rule")
-                    .list();
-        }
+        Session session = sf.getCurrentSession();
+        return session.createQuery("FROM Rule")
+                .list();
     }
 
-
+    @Transactional
     public List<AccidentType> getAllTypes() {
-        try (Session session = sf.openSession()) {
-            return session
-                    .createQuery("FROM AccidentType")
-                    .list();
-        }
+        Session session = sf.getCurrentSession();
+        return session
+                .createQuery("FROM AccidentType")
+                .list();
     }
 
     public Accident get(Integer id) {
-        try (Session session = sf.openSession()) {
-            return (Accident) session
-                    .createQuery("FROM Accident where id=:id").
-                    setParameter("id", id).uniqueResult();
-        }
+        Session session = sf.getCurrentSession();
+        return (Accident) session
+                .createQuery("FROM Accident where id=:id").
+                setParameter("id", id).uniqueResult();
     }
+
 }
