@@ -73,6 +73,11 @@
 
             </table>
             <a href="<c:url value='/create'/>">Add accident</a>
+            <ul class="nav">
+                <li class="nav-item" style="font-weight: bold">
+                    <a class="nav-link" href="<c:url value="/logout"/>">Выйти из системы</a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
