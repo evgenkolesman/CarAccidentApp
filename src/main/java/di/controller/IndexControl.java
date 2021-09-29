@@ -10,9 +10,29 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.ArrayList;
-import java.util.List;
+/**
+ * Main controller
+ * for the face page
+ *
+ * under methods there are JavaDocs with another ways of using it
+ */
+@Controller
+public class IndexControl {
 
+    private final AccidentService accidents;
+
+    public IndexControl(AccidentService accidents) {
+        this.accidents = accidents;
+    }
+
+    @GetMapping("/")
+    public String index(Model model) {
+
+        model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        model.addAttribute("accidents", accidents.getAll());
+        return "index";
+    }
+}
 
 /**
  *  Вот так бы было через AccidentMem
@@ -55,20 +75,3 @@ import java.util.List;
  *         return "index";
  *     }
  */
-@Controller
-public class IndexControl {
-
-    private final AccidentService accidents;
-
-    public IndexControl(AccidentService accidents) {
-        this.accidents = accidents;
-    }
-
-    @GetMapping("/")
-    public String index(Model model) {
-
-        model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        model.addAttribute("accidents", accidents.getAll());
-        return "index";
-    }
-}

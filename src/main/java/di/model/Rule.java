@@ -3,6 +3,14 @@ package di.model;
 import javax.persistence.*;
 import java.util.Objects;
 
+
+/**
+ * Entity which will consider
+ * rules
+ * @id
+ * @name state and naming of the rule
+ *
+ */
 @Entity
 @Table(name = "rule")
 public class Rule {

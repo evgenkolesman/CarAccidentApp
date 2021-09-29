@@ -3,6 +3,13 @@ package di.model;
 import javax.persistence.*;
 import java.util.Objects;
 
+/**
+ * Entity which will consider
+ * rules
+ * @id
+ * @name naming of accident type
+ *
+ */
 @Entity
 @Table(name = "atype")
 public class AccidentType {

@@ -5,13 +5,14 @@ import java.text.MessageFormat;
 import java.util.Objects;
 import java.util.Set;
 
-
 /**
- * если работаем просто через БД скриптами создаем все таблицы и зависимости, а потом
- * вкладываем
- * private AccidentType type;
- * private Rule rule;
- * в конструктор
+ * Entity with data accidents
+ * @id
+ * @name naming of accident
+ * @text description of accident
+ * @address address where was accident
+ * @type accident type data
+ * @rule rule data
  */
 
 @Entity

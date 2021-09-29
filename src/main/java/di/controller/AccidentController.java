@@ -16,6 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Accident controller
+ * with some of CRUD operation
+ */
 @Controller
 public class AccidentController {
 

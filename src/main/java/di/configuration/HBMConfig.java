@@ -14,9 +14,14 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-//@Configuration
-@PropertySource("classpath:app.properties")
-@EnableTransactionManagement
+/**@Configuration
+ * @PropertySource("classpath:app.properties")
+ * @EnableTransactionManagement
+ * configuration to use Hibernate as JPA
+ * in application without Spring Data
+ *
+ */
+
 public class HBMConfig {
 
     @Bean

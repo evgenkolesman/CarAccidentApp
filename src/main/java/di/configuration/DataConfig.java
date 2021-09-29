@@ -16,6 +16,14 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+/**
+ * Data configuration getting properties from app.properties
+ * create DataSource object to get connection with DataBase
+ *
+ * LocalContainerEntityManagerFactoryBean entityManagerFactory gets DataSource object
+ * and create entity manager Factory
+ * JPA uses Hibernate with HibernateJpaVendorAdapter we
+ */
 @Configuration
 @PropertySource("classpath:app.properties")
 @EnableJpaRepositories("di.repository")

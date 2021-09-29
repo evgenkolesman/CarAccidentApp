@@ -56,12 +56,6 @@
                     </td>
                     <td>
                         <c:out value="${accident.name}"/>
-<%--                        Ссылка изменения имени--%>
-<%--                        <div>--%>
-<%--                            <span>--%>
-<%--                                 <a href="<c:url value='/update?id=${accident.id}'/>">Добавить инцидент</a>--%>
-<%--                            </span>--%>
-<%--                        </div>--%>
                     </td>
                     <td><c:out value="${accident.text}"/></td>
                     <td><c:out value="${accident.address}"/></td>

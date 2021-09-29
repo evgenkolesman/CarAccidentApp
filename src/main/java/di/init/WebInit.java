@@ -10,6 +10,10 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 import javax.servlet.*;
 
+/**
+ * Most important init class
+ */
+
 public class WebInit implements WebApplicationInitializer {
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {

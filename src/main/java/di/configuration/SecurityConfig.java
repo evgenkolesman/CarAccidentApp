@@ -14,6 +14,13 @@ import javax.sql.DataSource;
 
 
 /**
+ * Security configuration
+ * saves data into special tables (users and authority)
+ * the password is encoding while registration
+ *
+ * first configure to work with DB
+ * second is a way how filter should work
+ *
  * для сохранения в памяти
   @Autowired
   PasswordEncoder passwordEncoder;

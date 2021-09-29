@@ -1,23 +1,24 @@
 package di.service;
 
-import di.model.Accident;
-import di.model.AccidentType;
-import di.model.Rule;
-import di.repository.AccidentRepository;
-import di.repository.AccidentRuleRepository;
-import di.repository.AccidentTypeRepository;
+import di.model.*;
+import di.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * private final AccidentJdbcTemplate store; - подключить для JDBC
  * private final AccidentMem store; - подключить для работы с локального компа
  * private final AccidentHibernate store; - подключить для работы на Hibernate
  *
+ * Service uses for connecting our DB(repositories) with
+ * controllers and others may have some logic
+ * for example saveOrEdit
+ *
+ * Note: under all methods I save some another versions of service
+ * for another types pf repository
  */
 
 @Service
@@ -26,17 +27,26 @@ public class AccidentService {
     private final AccidentRepository accidentStore;
     private final AccidentRuleRepository ruleStore;
     private final AccidentTypeRepository typeStore;
+    private final AuthorityRepository authorities;
+    private final UserRepository users;
 
     @Autowired
     public AccidentService(AccidentRepository accidentStore,
-                           AccidentRuleRepository ruleStore, AccidentTypeRepository typeStore) {
+                           AccidentRuleRepository ruleStore, AccidentTypeRepository typeStore,
+                           AuthorityRepository authorities, UserRepository users) {
         this.accidentStore = accidentStore;
         this.ruleStore = ruleStore;
         this.typeStore = typeStore;
+        this.authorities =authorities;
+        this.users = users;
     }
 
     public Accident saveOrEdit(Accident accident) {
          return accidentStore.save(accident);
+    }
+
+    public User saveOrEdit(User user) {
+        return users.save(user);
     }
 
     public List<Accident> getAll() {
@@ -67,6 +77,10 @@ public class AccidentService {
 
     public Accident get(Integer id) {
         return accidentStore.findById(id).get();
+    }
+
+    public Authority findByAuthority(String name) {
+        return authorities.findByAuthority(name);
     }
 }
 

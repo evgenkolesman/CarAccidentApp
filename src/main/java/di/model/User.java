@@ -3,6 +3,13 @@ package di.model;
 import javax.persistence.*;
 import java.util.Objects;
 
+/**
+ * Entity which will consider data
+ * about users
+ * @id
+ * @password
+ * @username
+ */
 @Entity
 @Table(name = "users")
 public class User {

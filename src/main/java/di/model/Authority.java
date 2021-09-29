@@ -3,9 +3,17 @@ package di.model;
 import javax.persistence.*;
 import java.util.Objects;
 
+/**
+ * Entity which will consider
+ * authorities of users
+ * @id
+ * @authority
+ *
+ */
 @Entity
 @Table(name = "authorities")
 public class Authority {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

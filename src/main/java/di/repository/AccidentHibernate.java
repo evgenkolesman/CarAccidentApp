@@ -13,7 +13,17 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 
-//@Repository
+/**
+ * It is class for working with Hibernate
+ * without Spring DATA
+ * uses to CRUD and anothers operations
+ *
+ * Note: @Transactional we use in current session,
+ * in new session we start new transaction and at the end commit transaction
+ *
+ * add @Repository to use
+ */
+
 public class AccidentHibernate {
     private final SessionFactory sf;
 

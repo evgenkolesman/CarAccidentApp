@@ -8,7 +8,15 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-//@Repository
+/**
+ * Use it for JDBC Template
+ * CRUD and others operations
+ * also you ned to create tables and references
+ * in your DB before working
+ *
+ * add @Repository
+ */
+
 public class AccidentJdbcTemplate {
     private final JdbcTemplate jdbc;
 
