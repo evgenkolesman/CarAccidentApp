@@ -12,11 +12,11 @@ import java.util.List;
  * private final AccidentJdbcTemplate store; - подключить для JDBC
  * private final AccidentMem store; - подключить для работы с локального компа
  * private final AccidentHibernate store; - подключить для работы на Hibernate
- *
+ * <p>
  * Service uses for connecting our DB(repositories) with
  * controllers and others may have some logic
  * for example saveOrEdit
- *
+ * <p>
  * Note: under all methods I save some another versions of service
  * for another types pf repository
  */
@@ -37,12 +37,12 @@ public class AccidentService {
         this.accidentStore = accidentStore;
         this.ruleStore = ruleStore;
         this.typeStore = typeStore;
-        this.authorities =authorities;
+        this.authorities = authorities;
         this.users = users;
     }
 
     public Accident saveOrEdit(Accident accident) {
-         return accidentStore.save(accident);
+        return accidentStore.save(accident);
     }
 
     public User saveOrEdit(User user) {
@@ -82,134 +82,139 @@ public class AccidentService {
     public Authority findByAuthority(String name) {
         return authorities.findByAuthority(name);
     }
+
+    public User findUserByName(String userName) {
+        return users.findUserByUsername(userName);
+    }
+
+    public User findUserById(Integer id) {
+        return users.findUserById(id);
+    }
+
 }
 
 /**
  * Это сервис для Hibernate
  *
-
-
- @Autowired
- public AccidentService(AccidentHibernate store) {
- this.store = store;
- }
-
- public void saveOrEdit(Accident accident) {
- store.saveOrUpdate(accident);
- }
-
- public List<Accident> getAll() {
- return store.getAllAccident();
- }
-
- public List<Rule> getRules() {
- return store.getAllRules();
- }
-
- public List<AccidentType> getTypes() {
- return store.getAllTypes();
- }
-
- public AccidentType getType(String[] type) {
- return store.getAllTypes().stream().filter(x -> x.getId() == Integer.parseInt(type[0])).findFirst().get();
- }
-
- public Rule getRule(String[] rules) {
- return store.getAllRules().stream().filter(x -> x.getId() == Integer.parseInt(rules[0])).findFirst().get();
- }
-
- public Accident get(Integer id) {
- return store.get(id);
- }
- *
-  *
-  * Это сервис для применения на основе AccidentJdbcTemplate
- *
- public void add(Accident accident) {
- store.save(accident);
- }
-
- public void edit(Accident accident) {
- store.update(accident);
- }
-
- public List<Accident> getAll() {
- return store.getAllAccident();
- }
-
- public List<Rule> getRules() {
- return store.getAllRules();
- }
-
- public List<AccidentType> getTypes() {
- return store.getAllTypes();
- }
-
- public AccidentType getType(String[] type) {
- return store.getAllTypes().stream().filter(x -> x.getId() == Integer.parseInt(type[0])).findFirst().get();
- }
-
- public Rule getRule(String[] rules) {
- return store.getAllRules().stream().filter(x -> x.getId() == Integer.parseInt(rules[0])).findFirst().get();
- }
-
- public Accident get(Integer id) {
- return store.get(id);
- }
- *
+ * @Autowired public AccidentService(AccidentHibernate store) {
+ * this.store = store;
+ * }
+ * <p>
+ * public void saveOrEdit(Accident accident) {
+ * store.saveOrUpdate(accident);
+ * }
+ * <p>
+ * public List<Accident> getAll() {
+ * return store.getAllAccident();
+ * }
+ * <p>
+ * public List<Rule> getRules() {
+ * return store.getAllRules();
+ * }
+ * <p>
+ * public List<AccidentType> getTypes() {
+ * return store.getAllTypes();
+ * }
+ * <p>
+ * public AccidentType getType(String[] type) {
+ * return store.getAllTypes().stream().filter(x -> x.getId() == Integer.parseInt(type[0])).findFirst().get();
+ * }
+ * <p>
+ * public Rule getRule(String[] rules) {
+ * return store.getAllRules().stream().filter(x -> x.getId() == Integer.parseInt(rules[0])).findFirst().get();
+ * }
+ * <p>
+ * public Accident get(Integer id) {
+ * return store.get(id);
+ * }
+ * <p>
+ * <p>
+ * Это сервис для применения на основе AccidentJdbcTemplate
+ * <p>
+ * public void add(Accident accident) {
+ * store.save(accident);
+ * }
+ * <p>
+ * public void edit(Accident accident) {
+ * store.update(accident);
+ * }
+ * <p>
+ * public List<Accident> getAll() {
+ * return store.getAllAccident();
+ * }
+ * <p>
+ * public List<Rule> getRules() {
+ * return store.getAllRules();
+ * }
+ * <p>
+ * public List<AccidentType> getTypes() {
+ * return store.getAllTypes();
+ * }
+ * <p>
+ * public AccidentType getType(String[] type) {
+ * return store.getAllTypes().stream().filter(x -> x.getId() == Integer.parseInt(type[0])).findFirst().get();
+ * }
+ * <p>
+ * public Rule getRule(String[] rules) {
+ * return store.getAllRules().stream().filter(x -> x.getId() == Integer.parseInt(rules[0])).findFirst().get();
+ * }
+ * <p>
+ * public Accident get(Integer id) {
+ * return store.get(id);
+ * }
+ * <p>
  * Это сервис для применения на основе AccidentMem
- *  private final AccidentMem store;
-
-    @Autowired
-    public AccidentService(AccidentMem store) {
-        this.store = store;
-    }
-
-    public void saveOrEdit(Accident accident) {
-        if (accident.getId() == 0) {
-            add(accident);
-        } else {
-            edit(accident);
-        }
-        //accident.getId() == 0 ? add(accident) : edit(accident); так почему то не работает
-    }
-
-    public void add(Accident accident) {
-        if (accident.getId() == 0) {
-            accident.setId(store.getAll().size() + 1);
-        }
-        store.add(accident.getId(), accident);
-    }
-
-    public void edit(Accident accident) {
-        store.edit(accident);
-    }
-
-    public List<Accident> getAll() {
-        return store.getAll();
-    }
-
-    public Accident get(Integer id) {
-        return store.get(id);
-    }
-
-    public void delete(Accident accident) {
-        store.delete(accident);
-    }
-
-    public List<Rule> getRules() {
-        return store.getRules();
-    }
-
-    public List<AccidentType> getTypes() {
-        return store.getTypes();
-    }
-
-    public AccidentType getType(String[] type) {
-        return store.getTypes().stream().filter(x -> x.getId() == Integer.parseInt(type[0])).findFirst().get();
-    }
-
-    public Rule getRule(String[] rules) {
-        return store.getRules().stream().filter(x -> x.getId() == Integer.parseInt(rules[0])).findFirst().get();
-    }
-}*/
+ * private final AccidentMem store;
+ * @Autowired public AccidentService(AccidentMem store) {
+ * this.store = store;
+ * }
+ * <p>
+ * public void saveOrEdit(Accident accident) {
+ * if (accident.getId() == 0) {
+ * add(accident);
+ * } else {
+ * edit(accident);
+ * }
+ * //accident.getId() == 0 ? add(accident) : edit(accident); так почему то не работает
+ * }
+ * <p>
+ * public void add(Accident accident) {
+ * if (accident.getId() == 0) {
+ * accident.setId(store.getAll().size() + 1);
+ * }
+ * store.add(accident.getId(), accident);
+ * }
+ * <p>
+ * public void edit(Accident accident) {
+ * store.edit(accident);
+ * }
+ * <p>
+ * public List<Accident> getAll() {
+ * return store.getAll();
+ * }
+ * <p>
+ * public Accident get(Integer id) {
+ * return store.get(id);
+ * }
+ * <p>
+ * public void delete(Accident accident) {
+ * store.delete(accident);
+ * }
+ * <p>
+ * public List<Rule> getRules() {
+ * return store.getRules();
+ * }
+ * <p>
+ * public List<AccidentType> getTypes() {
+ * return store.getTypes();
+ * }
+ * <p>
+ * public AccidentType getType(String[] type) {
+ * return store.getTypes().stream().filter(x -> x.getId() == Integer.parseInt(type[0])).findFirst().get();
+ * }
+ * <p>
+ * public Rule getRule(String[] rules) {
+ * return store.getRules().stream().filter(x -> x.getId() == Integer.parseInt(rules[0])).findFirst().get();
+ * }
+ * }
+ */
