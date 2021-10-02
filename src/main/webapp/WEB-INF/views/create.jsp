@@ -3,11 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <body>
 <form action="<c:url value='/save'/>" method='POST'>
-<%--<form action="<c:url value='/save'/>" method='POST'>--%>
   <table>
     <tr>
-<%--      <td>ID:</td>--%>
-<%--      <td><input type='text' name='id'></td>--%>
       <td>Name:</td>
       <td><input type='text' name='name'></td>
       <td>Description:</td>
