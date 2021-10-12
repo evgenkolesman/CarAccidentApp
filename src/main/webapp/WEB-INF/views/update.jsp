@@ -9,7 +9,7 @@
     }
 </style>
 <div class="container pt-3">
-    <form action="<c:url value='/save?id=${accident.id}'/>" method='POST'>
+    <form action="<c:url value='save?id=${accident.id}'/>" method='POST'>
         <table>
             <tr>
                 <td>Name:</td>

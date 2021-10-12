@@ -43,7 +43,7 @@ public class AccidentController {
         return "redirect:/";
     }
 
-    @GetMapping("/update")
+    @GetMapping("/save")
     public String update(@RequestParam("id") int id, Model model) {
         model.addAttribute("types", service.getTypes());
         model.addAttribute("rules", service.getRules());

@@ -94,6 +94,10 @@ public class AccidentService {
     public void deleteAccidentById(int id) {
         accidentStore.deleteById(id);
     }
+
+    public Accident findAccidentById(int id) {
+        return accidentStore.findById(id).get();
+    }
 }
 
 /**
