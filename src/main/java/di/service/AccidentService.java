@@ -91,6 +91,9 @@ public class AccidentService {
         return users.findUserById(id);
     }
 
+    public void deleteAccidentById(int id) {
+        accidentStore.deleteById(id);
+    }
 }
 
 /**

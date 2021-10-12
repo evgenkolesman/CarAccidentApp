@@ -48,30 +48,32 @@
                 <tbody>
                 <c:forEach items="${accidents}" var="accident">
                     <tr>
-                    <td>
-                        <a href="<c:url value='/update?id=${accident.id}'/>">
-                        <i class="fa fa-edit mr-3"></i>
-                        </a>
-                        <c:out value="${accident.id}"/>
-                    </td>
-                    <td>
-                        <c:out value="${accident.name}"/>
-                    </td>
-                    <td><c:out value="${accident.text}"/></td>
-                    <td><c:out value="${accident.address}"/></td>
-                    <td><c:out value="${accident.type.name}"/></td>
-                    <td><c:out value="${accident.rule.name}"/></td>
+                        <td>
+                            <a href="<c:url value='/update?id=${accident.id}'/>">
+                                <i class="fa fa-edit mr-3"></i>
+                            </a>
+                            <c:out value="${accident.id}"/>
+                        </td>
+                        <td>
+                            <c:out value="${accident.name}"/>
+                        </td>
+                        <td><c:out value="${accident.text}"/></td>
+                        <td><c:out value="${accident.address}"/></td>
+                        <td><c:out value="${accident.type.name}"/></td>
+                        <td><c:out value="${accident.rule.name}"/></td>
+                        <td>
+                            <a class="btn btn-secondary" href="<c:url value="/delete?id=${accident.id}"/>" role="button">Удалить
+                                объявление</a>
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>
 
             </table>
-            <a href="<c:url value='/create'/>">Add accident</a>
-            <ul class="nav">
-                <li class="nav-item" style="font-weight: bold">
-                    <a class="nav-link" href="<c:url value="/logout"/>">Выйти из системы</a>
-                </li>
-            </ul>
+            <a class="btn btn-primary btn-lg btn-block" href="<c:url value='/create'/>" role="button">Add accident</a>
+
+            <a class="btn btn-secondary btn-lg btn-block" href="<c:url value="/logout"/>" role="button">Выйти из системы</a>
+
         </div>
     </div>
 </div>

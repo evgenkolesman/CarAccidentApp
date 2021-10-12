@@ -7,10 +7,7 @@ import di.repository.AccidentMem;
 import di.service.AccidentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -52,5 +49,11 @@ public class AccidentController {
         model.addAttribute("rules", service.getRules());
         model.addAttribute("accident", service.get(id));
         return "/update";
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    public String delete(@RequestParam("id") int id) {
+        service.deleteAccidentById(id);
+        return "redirect:/";
     }
 }
